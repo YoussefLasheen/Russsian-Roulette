@@ -33,11 +33,14 @@ class MainScreen extends StatelessWidget {
                   opaque: false,
                   pageBuilder: (_, __, ___) => const ModifyCylinder()),
             );
-            },
-            icon: Icon(Icons.settings),
-          ),
-          FireButton(),
-        ],
+          }
+        },
+        child: Column(
+          children: [
+            Expanded(child: Image.asset('/images/revolver.png')),
+            FittedBox(child: Text("swipe right to shoot\nswipe down to reload"))
+          ],
+        ),
       ),
     );
   }
