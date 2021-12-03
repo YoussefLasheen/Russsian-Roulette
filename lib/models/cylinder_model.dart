@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:russian_roulette/models/chamber_model.dart';
 
 class CylinderModel extends ChangeNotifier {
@@ -8,6 +9,7 @@ class CylinderModel extends ChangeNotifier {
   int numberOfChambers;
   int position;
   bool status;
+  var player = AudioPlayer();
 
   CylinderModel(
       {required this.chambers,
@@ -38,6 +40,10 @@ class CylinderModel extends ChangeNotifier {
   void fireBulletAndShiftPosition() {
     status = chambers[position].isFilled;
     chambers[position] = ChamberModel(isFilled: false);
+    status?
+    player.setAsset('assets/audio/fire.mp3'):
+    player.setAsset('assets/audio/dry.mp3');
+    player.play();
     shiftPosition();
     notifyListeners();
   }
